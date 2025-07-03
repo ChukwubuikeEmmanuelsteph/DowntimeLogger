@@ -1,0 +1,305 @@
+/* ===== Base Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f0f4fa;
+  color: #333;
+  padding: 2rem;
+}
+
+/* ===== Header ===== */
+header {
+  background-color: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+header p {
+  margin-bottom: 3rem;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+nav button {
+  background-color: #f5f7fa;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+nav button.active,
+nav button:hover {
+  background-color: #004cff;
+  color: #fff;
+  border-color: #004cff;
+}
+
+/* ===== Main Layout ===== */
+main {
+ 
+  /* margin: auto; */
+}
+
+/* ===== Form Card ===== */
+#logSection{
+  
+  max-width: 800px;
+  /* align-items: center; */
+  margin: auto;
+}
+form {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+form h3 {
+  font-size: 1.25rem;
+  color: #222;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+form label {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+form select,
+form input,
+form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+  transition: border-color 0.2s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #004cff;
+  outline: none;
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+#historySection h2 {
+  /* margin-bottom: 2rem; */
+}
+
+.fa {
+  /* color: whitesmoke; */
+  padding: 1rem;
+  /* background-color: #f0f4fa; */
+  border-radius: 30px;
+}
+#historyCards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+.text-container{
+  display: flex;
+  gap: 4.5rem;
+  /* align-items: center; */
+  /* padding: 1rem; */
+}
+.card {
+  background-color: #fff;
+  border: 1px solid #e4e7ec;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.card .tag {
+  background-color: #fef3c7;
+  color: #92400e;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.card p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  /* color: #4b5563; */
+}
+
+.card p strong {
+  color: #111827;
+}
+
+.card .timestamp {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 0.5rem;
+}
+
+.card .duration {
+  color: #dc2626; /* red text for duration */
+  font-weight: bold;
+}
+
+.card .icon-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0;
+}
+
+.card .icon-text i {
+  color: #6b7280;
+}
+
+
+
+.search-area {
+  max-width: none;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.search-area h3 {
+  font-size: 1.25rem;
+  /* margin-bottom: 3rem; */
+  padding: 1em 0;
+}
+.search-area p{
+  /* font-size: 2rem; */
+  /* margin-bottom:4rem; */
+  padding: 1em 0;
+}
+.search-area input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* ===== Submit Button ===== */
+form button[type="submit"] {
+  background-color: #0b1535;
+  color: #fff;
+  padding: 0.85rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #14274e;
+}
+.delete-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1rem;
+  float: right;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.delete-btn:hover {
+  color: #b91c1c;
+}
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #16a34a;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.5s ease, bottom 0.5s ease;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  bottom: 50px;
+}
+
+.toast.hidden {
+  display: none;
+}
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+.hidden {
+  display: none;
+}
+
+/* ===== Responsive Layout ===== */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+
+  nav {
+    flex-direction: column;
+  }
+
+  form {
+    padding: 1.2rem;
+  }
+}

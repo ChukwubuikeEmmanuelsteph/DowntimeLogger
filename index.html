@@ -1,0 +1,100 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EQUIPMENT DOWNTIME LOGGER</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  </head>
+  <body>
+    <header>
+      <h2>EQUIPMENT DOWNTIME LOGGER</h2>
+      <p>track and analyze Equpiment Efficency</p>
+      <nav>
+        <button id="logTab">Log Downtime</button>
+        <button id="dashboardTab">Dashboard</button>
+        <button id="historyTab">History</button>
+      </nav>
+    </header>
+    <main>
+      <main>
+        <!-- Section 1: Downtime Logging Form -->
+        <section id="logSection">
+          <!-- Form goes here -->
+          <form id="logForm">
+            <h3>Log Equpiment Downtime Entry</h3>
+            <label for="machine">Equipment/Machine</label>
+            <select id="machine" required>
+              <option value="">Select machine</option>
+              <option value="3D Printer">3D Printer</option>
+              <option value="CNC Machine">CNC Machine</option>
+              <option value="Laser Cutter">Laser Cutter</option>
+              <option value="Milling Machine">Milling Machine</option>
+              <option value="Lathe">Lathe</option>
+              <option value="Injection Molding Machine">
+                Injection Molding Machine
+              </option>
+              <option value="Robotic Arm">Robotic Arm</option>
+              <option value="Conveyor Belt">Conveyor Belt</option>
+            </select>
+
+            <label for="reason">Downtime Reason</label>
+            <select id="reason" required>
+              <option value="">Select reason</option>
+              <option value="Mechanical">Mechanical Failure</option>
+              <option value="Electrical">Electrical Issue</option>
+              <option value="Software">Software Glitch</option>
+              <option value="Maintenance">Scheduled Maintenance</option>
+              <option value="Other">Other</option>
+            </select>
+
+            <label for="startTime">Start Time</label>
+            <input type="datetime-local" id="startTime" required />
+
+            <label for="endTime">End Time</label>
+            <input type="datetime-local" id="endTime" required />
+
+            <label for="notes">Additional Notes</label>
+            <textarea id="notes" placeholder="Add details..."></textarea>
+
+            <!-- <div id="formError" class="error-message"></div> -->
+            <p id="formError" class="error-message hidden"></p>
+
+
+            <button type="submit" id="submitBtn">Log Downtime Entry</button>
+          </form>
+        </section>
+
+        <!-- Section 2: Dashboard -->
+        <section id="dashboardSection" hidden>
+          <!-- Charts and summary cards go here -->
+        </section>
+
+        <!-- Section 3: History -->
+
+        <!-- History Section -->
+        <section id="historySection" hidden>
+          <!-- <h2>Downtime History</h2> -->
+
+          <div class="search-area">
+            <h3>🔍 Search Downtime History</h3>
+            <p>Search by machine, reason, or description</p>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Type to search..."
+            />
+          </div>
+
+          <div id="historyCards">
+            <!-- History entries will go here as cards -->
+          </div>
+        </section>
+      </main>
+    </main>
+    <div id="toast" class="toast hidden">✅ Information successfully submitted.</div>
+
+   <script src="script.js"></script>
+  </body>
+</html>
