@@ -4,8 +4,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EQUIPMENT DOWNTIME LOGGER</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
   <body>
     <header>
@@ -61,7 +63,6 @@
             <!-- <div id="formError" class="error-message"></div> -->
             <p id="formError" class="error-message hidden"></p>
 
-
             <button type="submit" id="submitBtn">Log Downtime Entry</button>
           </form>
         </section>
@@ -93,8 +94,15 @@
         </section>
       </main>
     </main>
-    <div id="toast" class="toast hidden">✅ Information successfully submitted.</div>
+    <div id="toast" class="toast hidden">
+      ✅ Information successfully submitted.
+    </div>
 
-   <script src="script.js"></script>
+    <div id="loader" class="loader hidden">
+      <div class="spinner"></div>
+      <p>Processing...</p>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>

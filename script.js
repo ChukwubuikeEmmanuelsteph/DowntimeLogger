@@ -9,6 +9,8 @@ const logForm = document.getElementById("logForm");
 const toast = document.getElementById("toast");
 const formError = document.getElementById("formError");
 const submitBtn = document.getElementById("submitBtn");
+const loader = document.getElementById("loader");
+
 
 // select all input fields
 const machineInput = document.getElementById("machine");
@@ -135,6 +137,36 @@ logForm.addEventListener("submit", function (e) {
     return;
   }
 
+  loader.classList.remove("hidden"); // Show loader 
+  // Simulate a delay for saving data (e.g., API call)
+  setTimeout(() => {
+     const entry = {
+    machine,
+    reason,
+    startTime: startTime.toISOString(),
+    endTime: endTime.toISOString(),
+    duration: durationMinutes,
+    notes,
+    createdAt: new Date().toISOString(),
+  };
+
+  // 4. Save it to an array or localStorage
+  let downtimeHistory =
+    JSON.parse(localStorage.getItem("downtimeHistory")) || [];
+  downtimeHistory.push(entry);
+
+  // 5. Render it as a card inside #historyCards
+  localStorage.setItem("downtimeHistory", JSON.stringify(downtimeHistory));
+
+  renderHistory();
+
+ 
+
+  logForm.reset();
+    loader.classList.add("hidden"); // ✅ Hide loader
+   showToast();
+
+  }, 5000); // Simulate a 1 second delay
 
 
 
@@ -176,30 +208,7 @@ logForm.addEventListener("submit", function (e) {
   //   return; // stop the function
   // }
   // 3. Create a downtime object
-  const entry = {
-    machine,
-    reason,
-    startTime: startTime.toISOString(),
-    endTime: endTime.toISOString(),
-    duration: durationMinutes,
-    notes,
-    createdAt: new Date().toISOString(),
-  };
-
-  // 4. Save it to an array or localStorage
-  let downtimeHistory =
-    JSON.parse(localStorage.getItem("downtimeHistory")) || [];
-  downtimeHistory.push(entry);
-
-  // 5. Render it as a card inside #historyCards
-  localStorage.setItem("downtimeHistory", JSON.stringify(downtimeHistory));
-
-  renderHistory();
-
- 
-
-  logForm.reset();
-   showToast(); 
+  
   // 7. Show the history section
 //   showSection(historySection, historyBtn);
 });

@@ -288,6 +288,38 @@ form button:hover {
 .hidden {
   display: none;
 }
+/* ===== Loader ===== */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.loader.hidden {
+  display: none;
+}
+.spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #004cff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 /* ===== Responsive Layout ===== */
 @media (max-width: 768px) {
@@ -301,5 +333,56 @@ form button:hover {
 
   form {
     padding: 1.2rem;
+  }
+    #historyCards {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card h3 {
+    font-size: 1rem;
+  }
+
+  .text-container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .card .icon-text {
+    gap: 4px;
+    font-size: 0.9rem;
+  }
+
+  .card .tag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+  }
+
+  .card .timestamp {
+    font-size: 0.75rem;
+  }
+
+  .delete-btn {
+    float: none;
+    margin-top: 10px;
+    align-self: flex-end;
+  }
+
+  .search-area {
+    padding: 1rem;
+  }
+
+  .search-area input {
+    padding: 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .toast {
+    font-size: 0.9rem;
+    bottom: 20px;
   }
 }
