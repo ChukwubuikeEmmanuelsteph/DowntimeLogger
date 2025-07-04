@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <header>
@@ -70,6 +71,24 @@
         <!-- Section 2: Dashboard -->
         <section id="dashboardSection" hidden>
           <!-- Charts and summary cards go here -->
+          <h3 class="dashboard-title">Equipment Downtime Dashboard</h3>
+          <div class="dashboard-cards">
+            <div class="dashboard-card" id="totalDowntimes">
+              <h4>Total Entries</h4>
+              <p class="card-value">0</p>
+            </div>
+            <div class="dashboard-card" id="totalDuration">
+              <h4>Total Duration</h4>
+              <p class="card-value">0 mins</p>
+            </div>
+            <div class="dashboard-card" id="mostUsedMachine">
+              <h4>Most Affected Machine</h4>
+              <p class="card-value">-</p>
+            </div>
+          </div>
+
+          <h3>Downtime Reasons Overview</h3>
+          <canvas id="reasonChart" width="400" height="400"></canvas>
         </section>
 
         <!-- Section 3: History -->

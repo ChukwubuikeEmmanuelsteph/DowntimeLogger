@@ -20,6 +20,9 @@ const endTimeInput = document.getElementById("endTime");
 const notesInput = document.getElementById("notes");
 const searchInput = document.getElementById("searchInput");
 
+
+
+let reasonChartInstance = null;
 // handel event and switch between tabs
 
 const  showToast = function(message = "Information successfully submitted.") {
@@ -93,13 +96,6 @@ historyBtn.addEventListener("click", () =>
 
 
 
-
-
-
-
-
-
-
 logForm.addEventListener("submit", function (e) {
   e.preventDefault(); // prevents reload
 
@@ -163,54 +159,14 @@ logForm.addEventListener("submit", function (e) {
  
 
   logForm.reset();
-    loader.classList.add("hidden"); // ✅ Hide loader
+    loader.classList.add("hidden"); // Hide loader
    showToast();
 
-  }, 5000); // Simulate a 1 second delay
+  }, 5000); 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // ✅ Validation Logic
-  // if (!machine || !reason || !startTimeInput.value || !endTimeInput.value) {
-  //   formError.textContent = "Please fill in all required fields.";
-  //   return;
-  // }
-
-  // if (startTime >= endTime) {
-  //   formError.textContent = "Start time must be before end time.";
-  //   return;
-  // }
-
-  // // If passed all checks, clear any error
-  // formError.textContent = "";
-  // // 2. Calculate duration from start & end
-
-  // const durationMinutes = Math.round((endTime - startTime) / 60000); // in minutes
-  // // Check if duration is valid
-  // if (durationMinutes <= 0) {
-  //   alert("Duration must be greater than 0 minutes.");
-  //   return; // stop the function
-  // }
-  // 3. Create a downtime object
-  
-  // 7. Show the history section
-//   showSection(historySection, historyBtn);
+ 
 });
 const renderHistory = function (filterText = "") {
   const historyCards = document.getElementById("historyCards");
@@ -266,24 +222,15 @@ const renderHistory = function (filterText = "") {
     historyCards.appendChild(card);
   });
 };
+// Add event listener to search input
 searchInput.addEventListener("input", function () {
   const searchValue = searchInput.value;
   renderHistory(searchValue);
 });
 
+
+
 // Add event listener to delete button
-// document.addEventListener("click", function (event) {
-//   if (event.target.classList.contains("delete-btn")) {
-//     const createdAt = event.target.getAttribute("data-createdat");
-//     let downtimeHistory =
-//       JSON.parse(localStorage.getItem("downtimeHistory")) || [];
-//     downtimeHistory = downtimeHistory.filter(
-//       (entry) => entry.createdAt !== createdAt
-//     );
-//     localStorage.setItem("downtimeHistory", JSON.stringify(downtimeHistory));
-//     renderHistory();
-//   }
-// });
 document.addEventListener("click", function (e) {
   if (e.target.closest(".delete-btn")) {
     const btn = e.target.closest(".delete-btn");
@@ -299,3 +246,78 @@ document.addEventListener("click", function (e) {
   }
 });
 renderHistory(); // Initial render
+
+const updatedHistory = function() {
+  const downtimeHistory = JSON.parse(localStorage.getItem("downtimeHistory")) || [];
+  
+  // Total entries
+  document.getElementById("totalDowntimes").querySelector(".card-value").textContent = downtimeHistory.length;
+  
+  // Total duration
+  const totalDuration = downtimeHistory.reduce((total, entry) => total + (entry.duration || 0), 0);
+  document.getElementById("totalDuration").querySelector(".card-value").textContent = `${totalDuration} mins`;
+
+  // Most frequent machine
+  const machineFrequency = {};
+  downtimeHistory.forEach(entry => {
+    machineFrequency[entry.machine] = (machineFrequency[entry.machine] || 0) + 1;
+  });
+  
+  let mostUsed = "-";
+  let max = 0;
+  for (let machine in machineFrequency) {
+    if (machineFrequency[machine] > max) {
+      max = machineFrequency[machine];
+      mostUsed = machine;
+    }
+  }
+  
+  document.getElementById("mostUsedMachine").querySelector(".card-value").textContent = mostUsed;
+  
+  // Most common reason
+  renderReasonChart();
+}
+
+updatedHistory(); // Update summary cards
+
+// Initialize the dashboard and history sections`
+
+
+function renderReasonChart() {
+  const ctx = document.getElementById("reasonChart").getContext("2d");
+
+  const downtimeHistory = JSON.parse(localStorage.getItem("downtimeHistory")) || [];
+
+  const reasonCounts = {};
+  downtimeHistory.forEach(entry => {
+    reasonCounts[entry.reason] = (reasonCounts[entry.reason] || 0) + 1;
+  });
+
+  const labels = Object.keys(reasonCounts);
+  const data = Object.values(reasonCounts);
+
+  // Destroy old chart instance if exists
+  if (reasonChartInstance) reasonChartInstance.destroy();
+
+  reasonChartInstance = new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Downtime Reasons",
+        data: data,
+        backgroundColor: [
+          "#f87171", "#facc15", "#60a5fa", "#34d399", "#a78bfa"
+        ]
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom',
+        },
+      },
+    }
+  });
+}
